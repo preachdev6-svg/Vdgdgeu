@@ -1,0 +1,212 @@
+name: AEGIS-X Autonomous Hunt
+on: 
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential curl libgl1 libglib2.0-0
+          sudo apt-get install -y nmap nikto dirb gobuster
+          sudo apt-get install -y apktool jadx dex2jar aapt
+          sudo apt-get install -y git wget unzip
+          
+          # Install Go for Go-based tools
+          wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+          sudo tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+          echo 'export PATH=$PATH:/usr/local/go/bin' >> $GITHUB_ENV
+          
+          # Install Node.js for JS-based tools
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+      
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install asyncio aiohttp httpx requests
+          pip install playwright beautifulsoup4 lxml
+          pip install dnspython python-whois
+          pip install GitPython
+          pip install llama-cpp-python
+          
+          # Install Playwright browsers
+          playwright install chromium firefox
+          playwright install-deps
+      
+      - name: Cache AI Models
+        uses: actions/cache@v3
+        with:
+          path: ./models
+          key: aegis-x-models-v1-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            aegis-x-models-v1-
+      
+      - name: Install Security Tools
+        run: |
+          # Create tools directory
+          mkdir -p tools
+          cd tools
+          
+          # Install Nuclei
+          go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+          
+          # Install Subfinder
+          go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+          
+          # Install HTTPx
+          go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+          
+          # Install FFUF
+          go install github.com/ffuf/ffuf@latest
+          
+          # Install Amass
+          go install -v github.com/OWASP/Amass/v4/...@master
+          
+          # Install Gau
+          go install github.com/lc/gau@latest
+          
+          # Install Waybackurls
+          go install github.com/tomnomnom/waybackurls@latest
+          
+          # Install Arjun
+          pip install arjun
+          
+          # Install Gitleaks
+          go install github.com/zricethezav/gitleaks/v8@latest
+          
+          # Install TruffleHog
+          go install github.com/trufflesecurity/trufflehog/v3@latest
+          
+          # Add Go bin to PATH
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+      
+      - name: Setup AEGIS-X Environment
+        run: |
+          # Create necessary directories
+          mkdir -p logs learn evidence output uploads
+          mkdir -p uploads/{apks,files,repositories}
+          mkdir -p evidence/{screenshots,videos,har_files}
+          mkdir -p learn/sessions
+          
+          # Set permissions
+          chmod +x core/orchestrator.py
+          
+          # Initialize learning data
+          echo '{"initialized": true, "timestamp": "'$(date -Iseconds)'"}' > learn/initialization.json
+      
+      - name: Download AI Models
+        run: |
+          mkdir -p models
+          
+          # Download lightweight models for GitHub Actions
+          # These would be actual model downloads in production
+          echo "Downloading AI models for autonomous operation..."
+          
+          # Simulate model downloads (replace with actual model URLs)
+          echo '{"model": "phi-3-mini", "status": "ready"}' > models/recon_strategist.json
+          echo '{"model": "codellama-7b", "status": "ready"}' > models/vuln_tactician.json
+          echo '{"model": "wizardcoder-15b", "status": "ready"}' > models/poc_engineer.json
+          echo '{"model": "phi-3-mini", "status": "ready"}' > models/evidence_architect.json
+          echo '{"model": "mixtral-8x7b", "status": "ready"}' > models/report_general.json
+      
+      - name: Run AEGIS-X Hunt
+        run: |
+          cd core
+          python orchestrator.py --targets ../targets.txt
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+      
+      - name: Generate Hunt Summary
+        if: always()
+        run: |
+          echo "# AEGIS-X Hunt Summary" > hunt_summary.md
+          echo "**Date:** $(date)" >> hunt_summary.md
+          echo "**Repository:** ${{ github.repository }}" >> hunt_summary.md
+          echo "**Commit:** ${{ github.sha }}" >> hunt_summary.md
+          echo "" >> hunt_summary.md
+          
+          if [ -d "output" ] && [ "$(ls -A output)" ]; then
+            echo "## Results" >> hunt_summary.md
+            echo "Hunt completed successfully. Check artifacts for detailed results." >> hunt_summary.md
+            
+            # Count findings if JSON files exist
+            if ls output/*.json 1> /dev/null 2>&1; then
+              FINDINGS_COUNT=$(find output -name "*.json" -exec jq length {} \; 2>/dev/null | awk '{sum+=$1} END {print sum}' || echo "Unknown")
+              echo "**Total Findings:** $FINDINGS_COUNT" >> hunt_summary.md
+            fi
+          else
+            echo "## Results" >> hunt_summary.md
+            echo "No findings or hunt failed. Check logs for details." >> hunt_summary.md
+          fi
+          
+          echo "" >> hunt_summary.md
+          echo "## System Status" >> hunt_summary.md
+          if [ -f "logs/aegis_x_*.log" ]; then
+            echo "Logs generated successfully." >> hunt_summary.md
+          else
+            echo "No logs found - potential system issue." >> hunt_summary.md
+          fi
+      
+      - name: Upload Hunt Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: aegis-x-hunt-results
+          path: |
+            output/
+            logs/
+            hunt_summary.md
+          retention-days: 30
+      
+      - name: Upload Learning Data
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: aegis-x-learning-data
+          path: |
+            learn/
+          retention-days: 90
+      
+      - name: Security Scan Results
+        if: always()
+        run: |
+          echo "🔍 AEGIS-X Hunt Completed"
+          echo "📊 Results uploaded as artifacts"
+          echo "🧠 Learning data preserved for future hunts"
+          
+          if [ -d "output" ] && [ "$(ls -A output)" ]; then
+            echo "✅ Hunt successful - findings generated"
+          else
+            echo "ℹ️ Hunt completed - no findings or system learning phase"
+          fi
+      
+      - name: Cleanup Sensitive Data
+        if: always()
+        run: |
+          # Remove any potentially sensitive temporary files
+          find . -name "*.tmp" -delete
+          find . -name "*.temp" -delete
+          
+          # Clean up any cached credentials (safety measure)
+          rm -rf ~/.cache/
+          rm -rf /tmp/aegis-x-*
+          
+          echo "🧹 Cleanup completed"
