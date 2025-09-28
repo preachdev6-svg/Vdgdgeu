@@ -1,0 +1,35 @@
+{
+  "targets_hunted": 2,
+  "vulnerabilities_found": 16,
+  "tools_success_rate": {},
+  "hunting_history": [
+    {
+      "target": "app.aikido.dev",
+      "findings_count": 15,
+      "phases_completed": [
+        "reconnaissance",
+        "content_discovery",
+        "vulnerability_scanning",
+        "specialized_testing",
+        "javascript_analysis",
+        "api_testing",
+        "cloud_testing"
+      ],
+      "timestamp": "2025-09-28T19:18:51.441894"
+    },
+    {
+      "target": "*.aikido.dev",
+      "findings_count": 1,
+      "phases_completed": [
+        "reconnaissance",
+        "content_discovery",
+        "vulnerability_scanning",
+        "specialized_testing",
+        "javascript_analysis",
+        "api_testing",
+        "cloud_testing"
+      ],
+      "timestamp": "2025-09-28T19:19:09.740983"
+    }
+  ]
+}

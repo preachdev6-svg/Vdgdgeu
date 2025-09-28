@@ -1,0 +1,235 @@
+2025-09-28 19:18:49,432 - AEGIS-X.IntelligenceEngine - INFO - 🕵️ Intelligence Engine initialized with comprehensive OSINT capabilities
+2025-09-28 19:18:49,432 - AEGIS-X.VerificationEngine - INFO - 🔍 Verification Engine initialized with triple verification protocol
+2025-09-28 19:18:49,432 - AEGIS-X.LearningEngine - INFO - 🧠 Learning Engine initialized with adaptive intelligence
+2025-09-28 19:18:49,432 - AEGIS-X.WebHunter - INFO - 🌐 Web Hunter initialized with comprehensive web security arsenal
+2025-09-28 19:18:49,432 - AEGIS-X.MobileHunter - INFO - 📱 Mobile Hunter initialized with comprehensive mobile security arsenal
+2025-09-28 19:18:49,432 - AEGIS-X.FileHunter - INFO - 📄 File Hunter initialized with comprehensive file analysis capabilities
+2025-09-28 19:18:49,432 - AEGIS-X.NetworkHunter - INFO - 🌐 Network Hunter initialized with comprehensive network security capabilities
+2025-09-28 19:18:49,432 - AEGIS-X.CodeHunter - INFO - 💻 Code Hunter initialized with comprehensive static analysis capabilities
+2025-09-28 19:18:49,432 - AEGIS-X.ReconStrategist - INFO - 🧠 Recon Strategist initialized with self-learning capabilities
+2025-09-28 19:18:49,433 - AEGIS-X.VulnTactician - INFO - 🎯 Vulnerability Tactician initialized with escalation intelligence
+2025-09-28 19:18:49,433 - AEGIS-X.PoCEngineer - INFO - 🛠️ PoC Engineer initialized with exploit generation capabilities
+2025-09-28 19:18:49,433 - AEGIS-X.EvidenceArchitect - INFO - 📸 Evidence Architect initialized with comprehensive capture capabilities
+2025-09-28 19:18:49,433 - AEGIS-X.ReportGeneral - INFO - 📝 Report General initialized with professional reporting capabilities
+2025-09-28 19:18:49,433 - AEGIS-X.Orchestrator - INFO - 🚀 AEGIS-X Orchestrator initialized - Ready for autonomous hunting
+2025-09-28 19:18:49,433 - AEGIS-X.Orchestrator - INFO - 🎯 Starting AEGIS-X autonomous hunting session
+2025-09-28 19:18:49,433 - AEGIS-X.Classifier - INFO - 🔍 Classifying target: app.aikido.dev
+2025-09-28 19:18:49,434 - AEGIS-X.Classifier - INFO - 📝 Target classified as: WEB
+2025-09-28 19:18:49,434 - AEGIS-X.Classifier - INFO - 🎯 Confidence: 0.80
+2025-09-28 19:18:49,434 - AEGIS-X.Classifier - INFO - 💭 Reasoning: Matched pattern: Domain name
+2025-09-28 19:18:49,435 - AEGIS-X.Orchestrator - INFO - 🔍 Target 5: app.aikido.dev -> web
+2025-09-28 19:18:49,435 - AEGIS-X.Classifier - INFO - 🔍 Classifying target: *.aikido.dev
+2025-09-28 19:18:49,435 - AEGIS-X.Classifier - INFO - 📝 Target classified as: WEB
+2025-09-28 19:18:49,435 - AEGIS-X.Classifier - INFO - 🎯 Confidence: 0.85
+2025-09-28 19:18:49,435 - AEGIS-X.Classifier - INFO - 💭 Reasoning: Matched pattern: Wildcard domain
+2025-09-28 19:18:49,436 - AEGIS-X.Orchestrator - INFO - 🔍 Target 6: *.aikido.dev -> web
+2025-09-28 19:18:49,436 - AEGIS-X.Orchestrator - INFO - 📋 Loaded 2 targets for hunting
+2025-09-28 19:18:49,436 - AEGIS-X.Orchestrator - INFO - 🎯 Hunting target: app.aikido.dev (Type: web)
+2025-09-28 19:18:49,436 - AEGIS-X.Orchestrator - INFO - 🕵️ Phase 1: Intelligence Gathering
+2025-09-28 19:18:49,436 - AEGIS-X.IntelligenceEngine - INFO - 🔍 Analyzing target intelligence: app.aikido.dev
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - 🧠 Analyzing target for reconnaissance: app.aikido.dev
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - 🎯 Planning reconnaissance for web target: app.aikido.dev
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - 📋 Reconnaissance plan created for: app.aikido.dev
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - ⏱️ Estimated duration: 45 minutes
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - 🔍 Phases: 5
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - 🚀 Executing reconnaissance for: app.aikido.dev
+2025-09-28 19:18:49,436 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Domain Intelligence
+2025-09-28 19:18:49,837 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Web Technology Analysis
+2025-09-28 19:18:50,238 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Content Discovery
+2025-09-28 19:18:50,639 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: JavaScript Analysis
+2025-09-28 19:18:51,040 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Cloud Asset Discovery
+2025-09-28 19:18:51,441 - AEGIS-X.ReconStrategist - INFO - ✅ Reconnaissance completed in 0.03 minutes
+2025-09-28 19:18:51,441 - AEGIS-X.ReconStrategist - INFO - ✅ Reconnaissance analysis completed - 0 findings
+2025-09-28 19:18:51,441 - AEGIS-X.Orchestrator - INFO - 🔍 Phase 2: Targeted Hunting (web)
+2025-09-28 19:18:51,441 - AEGIS-X.WebHunter - INFO - 🎯 Starting web hunt on: app.aikido.dev
+2025-09-28 19:18:51,441 - AEGIS-X.WebHunter - INFO - 🔍 Phase 1: Reconnaissance
+2025-09-28 19:18:51,443 - AEGIS-X.WebHunter - INFO - Installing subfinder...
+2025-09-28 19:18:51,444 - AEGIS-X.WebHunter - INFO - Installing assetfinder...
+2025-09-28 19:18:51,445 - AEGIS-X.WebHunter - INFO - Installing amass...
+2025-09-28 19:18:51,446 - AEGIS-X.WebHunter - INFO - Installing naabu...
+2025-09-28 19:18:51,837 - httpx - INFO - HTTP Request: GET https://app.aikido.dev "HTTP/1.1 200 OK"
+2025-09-28 19:18:51,943 - AEGIS-X.WebHunter - INFO - 📁 Phase 2: Content Discovery
+2025-09-28 19:18:51,945 - AEGIS-X.WebHunter - INFO - Installing gobuster...
+2025-09-28 19:18:52,294 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/robots.txt "HTTP/1.1 200 OK"
+2025-09-28 19:18:52,527 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/sitemap.xml "HTTP/1.1 200 OK"
+2025-09-28 19:18:52,634 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/.htaccess "HTTP/1.1 403 Forbidden"
+2025-09-28 19:18:52,762 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/web.config "HTTP/1.1 200 OK"
+2025-09-28 19:18:52,892 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/config.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:52,999 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/config.json "HTTP/1.1 404 Not Found"
+2025-09-28 19:18:53,128 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/.env "HTTP/1.1 200 OK"
+2025-09-28 19:18:53,258 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/backup.sql "HTTP/1.1 200 OK"
+2025-09-28 19:18:53,390 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/admin.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:53,518 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/login.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:53,647 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/phpinfo.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:53,776 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/test.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:53,779 - AEGIS-X.WebHunter - INFO - Installing arjun...
+2025-09-28 19:18:53,779 - AEGIS-X.WebHunter - INFO - 🔍 Phase 3: Vulnerability Scanning
+2025-09-28 19:18:53,780 - AEGIS-X.WebHunter - INFO - Installing nuclei...
+2025-09-28 19:18:53,781 - AEGIS-X.WebHunter - INFO - Installing nikto...
+2025-09-28 19:18:54,133 - httpx - INFO - HTTP Request: GET https://app.aikido.dev "HTTP/1.1 200 OK"
+2025-09-28 19:18:54,364 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/server-status "HTTP/1.1 200 OK"
+2025-09-28 19:18:54,494 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/server-info "HTTP/1.1 200 OK"
+2025-09-28 19:18:54,622 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/status "HTTP/1.1 200 OK"
+2025-09-28 19:18:54,751 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/.env "HTTP/1.1 200 OK"
+2025-09-28 19:18:54,881 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/.git/config "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,008 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/config.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,138 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/wp-config.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,267 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/database.yml "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,395 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/secrets.yml "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,526 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/.aws/credentials "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,656 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/backup.sql "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,784 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/dump.sql "HTTP/1.1 200 OK"
+2025-09-28 19:18:55,915 - httpx - INFO - HTTP Request: GET https://app.aikido.dev/phpinfo.php "HTTP/1.1 200 OK"
+2025-09-28 19:18:56,046 - httpx - INFO - HTTP Request: GET https://app.aikido.dev "HTTP/1.1 200 OK"
+2025-09-28 19:18:56,173 - httpx - INFO - HTTP Request: OPTIONS https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:56,303 - httpx - INFO - HTTP Request: PUT https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:56,431 - httpx - INFO - HTTP Request: DELETE https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:56,560 - httpx - INFO - HTTP Request: PATCH https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:56,665 - httpx - INFO - HTTP Request: TRACE https://app.aikido.dev "HTTP/1.1 405 Not Allowed"
+2025-09-28 19:18:56,665 - AEGIS-X.WebHunter - INFO - 🎯 Phase 4: Specialized Testing
+2025-09-28 19:18:56,667 - AEGIS-X.WebHunter - INFO - Installing dalfox...
+2025-09-28 19:18:57,017 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,145 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,271 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,416 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,546 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,675 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,801 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:57,930 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,056 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,184 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,314 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,441 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,569 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,712 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,840 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:58,966 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:59,094 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:59,223 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:59,350 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:59,480 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:59,606 - httpx - INFO - HTTP Request: POST https://app.aikido.dev "HTTP/1.1 405 Method not allowed"
+2025-09-28 19:18:59,608 - AEGIS-X.WebHunter - INFO - Installing commix...
+2025-09-28 19:18:59,954 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?file=../../../../etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,196 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?file=..\..\..\..\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,327 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?file=/etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,459 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?file=C:\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,589 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?page=../../../../etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,721 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?page=..\..\..\..\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,850 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?page=/etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:00,980 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?page=C:\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,109 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?include=../../../../etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,242 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?include=..\..\..\..\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,372 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?include=/etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,504 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?include=C:\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,635 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?path=../../../../etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,773 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?path=..\..\..\..\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:01,903 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?path=/etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:02,034 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?path=C:\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:02,164 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?doc=../../../../etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:02,293 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?doc=..\..\..\..\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:02,427 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?doc=/etc/passwd "HTTP/1.1 200 OK"
+2025-09-28 19:19:02,559 - httpx - INFO - HTTP Request: GET https://app.aikido.dev?doc=C:\windows\system32\drivers\etc\hosts "HTTP/1.1 200 OK"
+2025-09-28 19:19:02,560 - AEGIS-X.WebHunter - INFO - 📜 Phase 5: JavaScript Analysis
+2025-09-28 19:19:02,924 - httpx - INFO - HTTP Request: GET https://app.aikido.dev "HTTP/1.1 200 OK"
+2025-09-28 19:19:03,165 - httpx - INFO - HTTP Request: GET https://cdn.aikido.dev/assets/index-6b7789b5.js "HTTP/1.1 200 OK"
+2025-09-28 19:19:03,420 - httpx - INFO - HTTP Request: GET https://cdn.aikido.dev/assets/index-6b7789b5.js "HTTP/1.1 200 OK"
+2025-09-28 19:19:03,839 - AEGIS-X.WebHunter - INFO - 🔌 Phase 6: API Testing
+2025-09-28 19:19:06,554 - httpx - INFO - HTTP Request: POST https://app.aikido.dev/graphql "HTTP/1.1 200 OK"
+2025-09-28 19:19:06,788 - httpx - INFO - HTTP Request: POST https://app.aikido.dev/api/graphql "HTTP/1.1 200 OK"
+2025-09-28 19:19:06,919 - httpx - INFO - HTTP Request: POST https://app.aikido.dev/v1/graphql "HTTP/1.1 200 OK"
+2025-09-28 19:19:07,047 - httpx - INFO - HTTP Request: POST https://app.aikido.dev/query "HTTP/1.1 200 OK"
+2025-09-28 19:19:07,048 - AEGIS-X.WebHunter - INFO - ☁️ Phase 7: Cloud Testing
+2025-09-28 19:19:07,196 - httpx - INFO - HTTP Request: GET https://app-aikido-dev.s3.amazonaws.com "HTTP/1.1 404 Not Found"
+2025-09-28 19:19:07,325 - httpx - INFO - HTTP Request: GET https://app-aikido-dev-backup.s3.amazonaws.com "HTTP/1.1 404 Not Found"
+2025-09-28 19:19:07,447 - httpx - INFO - HTTP Request: GET https://app-aikido-dev-assets.s3.amazonaws.com "HTTP/1.1 404 Not Found"
+2025-09-28 19:19:07,571 - httpx - INFO - HTTP Request: GET https://app-aikido-dev-static.s3.amazonaws.com "HTTP/1.1 404 Not Found"
+2025-09-28 19:19:07,733 - httpx - INFO - HTTP Request: GET https://app-aikido-dev-files.s3.amazonaws.com "HTTP/1.1 404 Not Found"
+2025-09-28 19:19:07,734 - AEGIS-X.WebHunter - INFO - 🏆 Web hunt completed - Found 15 potential vulnerabilities
+2025-09-28 19:19:07,734 - AEGIS-X.Orchestrator - INFO - 🔗 Phase 3: Vulnerability Analysis and Chaining
+2025-09-28 19:19:07,734 - AEGIS-X.Orchestrator - ERROR - Target hunting failed for app.aikido.dev: 'VulnTactician' object has no attribute 'analyze_escalation_chains'
+2025-09-28 19:19:07,734 - AEGIS-X.Orchestrator - INFO - 🎯 Hunting target: *.aikido.dev (Type: web)
+2025-09-28 19:19:07,734 - AEGIS-X.Orchestrator - INFO - 🕵️ Phase 1: Intelligence Gathering
+2025-09-28 19:19:07,734 - AEGIS-X.IntelligenceEngine - INFO - 🔍 Analyzing target intelligence: *.aikido.dev
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - 🧠 Analyzing target for reconnaissance: *.aikido.dev
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - 🎯 Planning reconnaissance for web target: *.aikido.dev
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - 📋 Reconnaissance plan created for: *.aikido.dev
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - ⏱️ Estimated duration: 45 minutes
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - 🔍 Phases: 5
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - 🚀 Executing reconnaissance for: *.aikido.dev
+2025-09-28 19:19:07,735 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Domain Intelligence
+2025-09-28 19:19:08,136 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Web Technology Analysis
+2025-09-28 19:19:08,537 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Content Discovery
+2025-09-28 19:19:08,938 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: JavaScript Analysis
+2025-09-28 19:19:09,339 - AEGIS-X.ReconStrategist - INFO - 🔍 Executing phase: Cloud Asset Discovery
+2025-09-28 19:19:09,740 - AEGIS-X.ReconStrategist - INFO - ✅ Reconnaissance completed in 0.03 minutes
+2025-09-28 19:19:09,740 - AEGIS-X.ReconStrategist - INFO - ✅ Reconnaissance analysis completed - 0 findings
+2025-09-28 19:19:09,740 - AEGIS-X.Orchestrator - INFO - 🔍 Phase 2: Targeted Hunting (web)
+2025-09-28 19:19:09,740 - AEGIS-X.WebHunter - INFO - 🎯 Starting web hunt on: *.aikido.dev
+2025-09-28 19:19:09,740 - AEGIS-X.WebHunter - INFO - 🔍 Phase 1: Reconnaissance
+2025-09-28 19:19:09,746 - AEGIS-X.WebHunter - INFO - 📁 Phase 2: Content Discovery
+2025-09-28 19:19:09,756 - AEGIS-X.WebHunter - INFO - 🔍 Phase 3: Vulnerability Scanning
+2025-09-28 19:19:09,761 - AEGIS-X.WebHunter - INFO - 🎯 Phase 4: Specialized Testing
+2025-09-28 19:19:09,785 - AEGIS-X.WebHunter - INFO - 📜 Phase 5: JavaScript Analysis
+2025-09-28 19:19:09,791 - AEGIS-X.WebHunter - INFO - 🔌 Phase 6: API Testing
+2025-09-28 19:19:09,798 - AEGIS-X.WebHunter - INFO - ☁️ Phase 7: Cloud Testing
+2025-09-28 19:19:09,806 - AEGIS-X.WebHunter - INFO - 🏆 Web hunt completed - Found 1 potential vulnerabilities
+2025-09-28 19:19:09,806 - AEGIS-X.Orchestrator - INFO - 🔗 Phase 3: Vulnerability Analysis and Chaining
+2025-09-28 19:19:09,806 - AEGIS-X.Orchestrator - ERROR - Target hunting failed for *.aikido.dev: 'VulnTactician' object has no attribute 'analyze_escalation_chains'
+2025-09-28 19:19:09,806 - AEGIS-X.Orchestrator - INFO - 🔬 Starting comprehensive verification of all findings
+2025-09-28 19:19:09,806 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Subdomains Discovered
+2025-09-28 19:19:09,806 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,807 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Subdomains Discovered - Layer 1 failed: No target specified
+2025-09-28 19:19:09,807 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Technologies Identified
+2025-09-28 19:19:09,807 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,807 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Technologies Identified - Layer 1 failed: No target specified
+2025-09-28 19:19:09,807 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive Files Found
+2025-09-28 19:19:09,807 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,807 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive Files Found - Layer 1 failed: No target specified
+2025-09-28 19:19:09,807 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Missing Security Headers
+2025-09-28 19:19:09,807 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,808 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Missing Security Headers - Layer 1 failed: No target specified
+2025-09-28 19:19:09,808 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /.env
+2025-09-28 19:19:09,808 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,808 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /.env - Layer 1 failed: No target specified
+2025-09-28 19:19:09,808 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /.git/config
+2025-09-28 19:19:09,808 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,809 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /.git/config - Layer 1 failed: No target specified
+2025-09-28 19:19:09,809 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /config.php
+2025-09-28 19:19:09,809 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,810 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /config.php - Layer 1 failed: No target specified
+2025-09-28 19:19:09,810 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /wp-config.php
+2025-09-28 19:19:09,810 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,810 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /wp-config.php - Layer 1 failed: No target specified
+2025-09-28 19:19:09,810 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /database.yml
+2025-09-28 19:19:09,810 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,811 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /database.yml - Layer 1 failed: No target specified
+2025-09-28 19:19:09,811 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /secrets.yml
+2025-09-28 19:19:09,811 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,811 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /secrets.yml - Layer 1 failed: No target specified
+2025-09-28 19:19:09,811 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /.aws/credentials
+2025-09-28 19:19:09,811 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,812 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /.aws/credentials - Layer 1 failed: No target specified
+2025-09-28 19:19:09,812 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /backup.sql
+2025-09-28 19:19:09,812 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,812 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /backup.sql - Layer 1 failed: No target specified
+2025-09-28 19:19:09,812 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /dump.sql
+2025-09-28 19:19:09,812 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,813 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /dump.sql - Layer 1 failed: No target specified
+2025-09-28 19:19:09,813 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Sensitive File Exposed: /phpinfo.php
+2025-09-28 19:19:09,813 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,813 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Sensitive File Exposed: /phpinfo.php - Layer 1 failed: No target specified
+2025-09-28 19:19:09,813 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: API Endpoints in JavaScript
+2025-09-28 19:19:09,819 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,819 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: API Endpoints in JavaScript - Layer 1 failed: No target specified
+2025-09-28 19:19:09,819 - AEGIS-X.VerificationEngine - INFO - 🔬 Starting triple verification for: Subdomains Discovered
+2025-09-28 19:19:09,819 - AEGIS-X.VerificationEngine - INFO - ❌ Layer 1 failed: No target specified
+2025-09-28 19:19:09,819 - AEGIS-X.Orchestrator - INFO - ❌ Rejected: Subdomains Discovered - Layer 1 failed: No target specified
+2025-09-28 19:19:09,820 - AEGIS-X.Orchestrator - INFO - 🎉 Verification completed - 0/16 findings verified
+2025-09-28 19:19:09,820 - AEGIS-X.Orchestrator - INFO - 📝 Generating comprehensive reports
+2025-09-28 19:19:09,820 - AEGIS-X.Orchestrator - INFO - No verified findings to report
+2025-09-28 19:19:09,820 - AEGIS-X.Orchestrator - INFO - 🧠 Learning from hunting session
+2025-09-28 19:19:09,820 - AEGIS-X.LearningEngine - INFO - 🧠 Analyzing session for learning: hunt_1759087129
+2025-09-28 19:19:09,820 - AEGIS-X.LearningEngine - INFO - 🔄 Updating learning system with session: hunt_1759087129
+2025-09-28 19:19:09,820 - AEGIS-X.Orchestrator - ERROR - Learning failed: 'dict' object has no attribute 'lower'
+2025-09-28 19:19:09,830 - AEGIS-X.Orchestrator - INFO - 🏆 Hunt session completed - 0 verified findings

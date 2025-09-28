@@ -184,7 +184,7 @@ class AegisXOrchestrator:
                     continue
                 
                 # Classify target
-                classification = await self.classifier.classify(line)
+                classification = self.classifier.classify(line)
                 
                 target_info = {
                     "line_number": line_num,
@@ -196,7 +196,7 @@ class AegisXOrchestrator:
                 
                 targets.append(target_info)
                 
-                self.logger.info(f"🔍 Target {line_num}: {line} -> {classification['target_type']}")
+                self.logger.info(f"🔍 Target {line_num}: {line} -> {classification.target_type.value}")
         
         except Exception as e:
             self.logger.error(f"Failed to load targets: {e}")
@@ -207,7 +207,7 @@ class AegisXOrchestrator:
     async def _hunt_target(self, target_info: Dict[str, Any], session: Dict[str, Any]):
         """Hunt a single target comprehensively"""
         target = target_info["raw_target"]
-        target_type = target_info["classification"]["target_type"]
+        target_type = target_info["classification"].target_type.value
         
         self.logger.info(f"🎯 Hunting target: {target} (Type: {target_type})")
         
@@ -218,7 +218,7 @@ class AegisXOrchestrator:
             target_info["intelligence"] = intelligence
             
             # Let Recon Strategist analyze intelligence
-            recon_analysis = await self.agents["recon_strategist"].analyze(target, intelligence)
+            recon_analysis = await self.agents["recon_strategist"].analyze(target, target_type, intelligence)
             
             # Phase 2: Targeted Hunting
             self.logger.info(f"🔍 Phase 2: Targeted Hunting ({target_type})")

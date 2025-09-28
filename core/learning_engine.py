@@ -111,6 +111,140 @@ class LearningEngine:
             "success_stories": []
         }
     
+    async def analyze_session(self, session_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze a completed hunt session and extract learning insights"""
+        self.logger.info(f"🧠 Analyzing session for learning: {session_data.get('session_id')}")
+        
+        # Extract key metrics from session
+        session_metrics = {
+            "session_id": session_data.get("session_id"),
+            "duration": session_data.get("duration", "00:00:00"),
+            "targets_processed": len(session_data.get("targets", [])),
+            "total_findings": len(session_data.get("findings", [])),
+            "verified_findings": len(session_data.get("verified_findings", [])),
+            "success_rate": len(session_data.get("verified_findings", [])) / max(len(session_data.get("findings", [])), 1),
+            "target_types": list(set([self._extract_target_type(t) for t in session_data.get("targets", [])]))
+        }
+        
+        # Analyze tool effectiveness
+        tool_analysis = await self._analyze_session_tools(session_data)
+        
+        # Analyze vulnerability patterns
+        vuln_analysis = await self._analyze_session_vulnerabilities(session_data)
+        
+        # Generate learning insights
+        learning_insights = {
+            "session_metrics": session_metrics,
+            "tool_effectiveness": tool_analysis,
+            "vulnerability_patterns": vuln_analysis,
+            "performance_assessment": self._assess_session_performance(session_data),
+            "improvement_opportunities": self._identify_improvement_opportunities(session_data),
+            "learning_notes": self._generate_session_learning_notes(session_data)
+        }
+        
+        # Update learning system
+        await self.update(session_data)
+        
+        self.logger.info(f"✅ Session analysis completed - {len(learning_insights['improvement_opportunities'])} improvements identified")
+        return learning_insights
+    
+    async def _analyze_session_tools(self, session_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze tool effectiveness in the session"""
+        tools_used = []
+        for target in session_data.get("targets", []):
+            for finding in target.get("findings", []):
+                tools_used.extend(finding.get("tools_used", []))
+        
+        return {
+            "tools_used": list(set(tools_used)),
+            "tool_count": len(set(tools_used)),
+            "effectiveness_score": len(session_data.get("verified_findings", [])) / max(len(tools_used), 1)
+        }
+    
+    async def _analyze_session_vulnerabilities(self, session_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze vulnerability patterns found in the session"""
+        vulnerabilities = []
+        for finding in session_data.get("verified_findings", []):
+            vulnerabilities.append({
+                "type": finding.get("vulnerability_type", "unknown"),
+                "severity": finding.get("severity", "unknown"),
+                "target_type": finding.get("target_type", "unknown")
+            })
+        
+        return {
+            "vulnerability_types": list(set([v["type"] for v in vulnerabilities])),
+            "severity_distribution": {
+                "critical": len([v for v in vulnerabilities if v["severity"].lower() == "critical"]),
+                "high": len([v for v in vulnerabilities if v["severity"].lower() == "high"]),
+                "medium": len([v for v in vulnerabilities if v["severity"].lower() == "medium"]),
+                "low": len([v for v in vulnerabilities if v["severity"].lower() == "low"])
+            },
+            "patterns": vulnerabilities
+        }
+    
+    def _assess_session_performance(self, session_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Assess overall session performance"""
+        total_findings = len(session_data.get("findings", []))
+        verified_findings = len(session_data.get("verified_findings", []))
+        targets_processed = len(session_data.get("targets", []))
+        
+        performance_score = 0.0
+        if total_findings > 0:
+            performance_score = (verified_findings / total_findings) * 100
+        
+        return {
+            "performance_score": performance_score,
+            "verification_rate": verified_findings / max(total_findings, 1),
+            "findings_per_target": total_findings / max(targets_processed, 1),
+            "assessment": "Excellent" if performance_score >= 80 else "Good" if performance_score >= 60 else "Needs Improvement"
+        }
+    
+    def _identify_improvement_opportunities(self, session_data: Dict[str, Any]) -> List[str]:
+        """Identify opportunities for improvement based on session data"""
+        opportunities = []
+        
+        if len(session_data.get("verified_findings", [])) == 0:
+            opportunities.append("No verified findings - consider expanding tool arsenal or improving verification protocols")
+        
+        if len(session_data.get("findings", [])) == 0:
+            opportunities.append("No findings detected - consider adding more vulnerability scanning techniques")
+        
+        for target in session_data.get("targets", []):
+            if target.get("error"):
+                opportunities.append(f"Target processing failed: {target['error']} - investigate and fix")
+        
+        return opportunities
+    
+    def _generate_session_learning_notes(self, session_data: Dict[str, Any]) -> List[str]:
+        """Generate learning notes from the session"""
+        notes = []
+        
+        # Note successful patterns
+        if session_data.get("verified_findings"):
+            notes.append("Successfully verified findings - continue using current verification protocols")
+        
+        # Note target type patterns
+        target_types = set([self._extract_target_type(t) for t in session_data.get("targets", [])])
+        notes.append(f"Processed target types: {', '.join(target_types)}")
+        
+        # Note duration insights
+        duration = session_data.get("duration", "00:00:00")
+        notes.append(f"Session completed in {duration} - monitor for optimization opportunities")
+        
+        return notes
+    
+    def _extract_target_type(self, target_data: Dict[str, Any]) -> str:
+        """Extract target type from target data, handling both dict and ClassificationResult"""
+        classification = target_data.get("classification")
+        if classification:
+            if hasattr(classification, 'target_type'):
+                # ClassificationResult object
+                return classification.target_type.value if hasattr(classification.target_type, 'value') else str(classification.target_type)
+            elif isinstance(classification, dict):
+                # Dictionary
+                return classification.get("target_type", "unknown")
+        return "unknown"
+
     async def update(self, learning_data: Dict[str, Any]):
         """Update the learning system with new data from a hunt session"""
         self.logger.info(f"🔄 Updating learning system with session: {learning_data.get('session_id')}")

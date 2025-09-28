@@ -247,30 +247,109 @@ class ReportGeneral:
         severity = finding.get("severity", "Medium")
         cvss_score = finding.get("cvss_score", 5.0)
         target = finding.get("target", "Unknown")
+        vuln_type = finding.get("type", "security_misconfiguration")
         
-        return f"""## Executive Summary
+        # Generate professional executive summary
+        summary = f"""## Executive Summary
 
 **Vulnerability:** {title}
-**Severity:** {severity} (CVSS {cvss_score})
 **Target:** {target}
-**Discovery Date:** {datetime.now().strftime('%Y-%m-%d')}
+**Severity:** {severity} (CVSS {cvss_score})
+**Type:** {vuln_type.replace('_', ' ').title()}
 
 ### Key Findings
 
-A {severity.lower()}-severity security vulnerability has been identified in {target}. This vulnerability allows an attacker to {self._get_attack_description(finding)}, potentially leading to {self._get_impact_summary(finding)}.
-
-### Immediate Actions Required
-
-1. **Immediate:** Validate and reproduce the vulnerability
-2. **Short-term:** Implement temporary mitigations if possible
-3. **Long-term:** Deploy comprehensive remediation as outlined in this report
+A {severity.lower()}-severity {vuln_type.replace('_', ' ')} vulnerability has been identified in {target}. This vulnerability allows an attacker to {self._generate_attack_scenario(finding)}.
 
 ### Business Impact
 
-{self._get_business_impact_summary(finding)}
+{self._generate_business_impact_summary(finding)}
 
----
+### Immediate Actions Required
+
+1. **Immediate:** {self._generate_immediate_action(finding)}
+2. **Short-term:** Implement proper security controls and monitoring
+3. **Long-term:** Conduct comprehensive security review of similar systems
+
+### Risk Rating
+
+- **Confidentiality Impact:** {self._assess_cia_impact(finding, 'confidentiality')}
+- **Integrity Impact:** {self._assess_cia_impact(finding, 'integrity')}  
+- **Availability Impact:** {self._assess_cia_impact(finding, 'availability')}
 """
+        return summary
+    
+    def _generate_attack_scenario(self, finding: Dict[str, Any]) -> str:
+        """Generate attack scenario description"""
+        vuln_type = finding.get("type", "security_misconfiguration")
+        
+        scenarios = {
+            "security_misconfiguration": "exploit misconfigurations to gain unauthorized access or information",
+            "information_disclosure": "access sensitive information that should not be publicly available",
+            "sensitive_data_exposure": "retrieve confidential data including credentials, API keys, or personal information",
+            "authentication_bypass": "bypass authentication mechanisms and gain unauthorized access",
+            "sql_injection": "execute arbitrary SQL queries and potentially access or modify database contents",
+            "xss": "execute malicious scripts in users' browsers and steal sensitive information",
+            "ssrf": "make requests to internal systems and potentially access restricted resources"
+        }
+        
+        return scenarios.get(vuln_type, "exploit the identified vulnerability to compromise system security")
+    
+    def _generate_business_impact_summary(self, finding: Dict[str, Any]) -> str:
+        """Generate business impact summary"""
+        severity = finding.get("severity", "Medium").lower()
+        
+        if severity == "critical":
+            return "This vulnerability poses an immediate and severe threat to business operations, potentially resulting in complete system compromise, data breaches, and significant financial losses."
+        elif severity == "high":
+            return "This vulnerability represents a significant security risk that could lead to data exposure, system compromise, and potential regulatory compliance violations."
+        elif severity == "medium":
+            return "This vulnerability creates a moderate security risk that could be exploited to gain unauthorized access or information, potentially impacting business operations."
+        else:
+            return "This vulnerability represents a low-level security concern that should be addressed as part of regular security maintenance."
+    
+    def _generate_immediate_action(self, finding: Dict[str, Any]) -> str:
+        """Generate immediate action recommendation"""
+        vuln_type = finding.get("type", "security_misconfiguration")
+        
+        actions = {
+            "security_misconfiguration": "Review and correct the identified misconfiguration",
+            "information_disclosure": "Restrict access to the exposed information immediately",
+            "sensitive_data_exposure": "Remove or secure the exposed sensitive data",
+            "authentication_bypass": "Implement proper authentication controls",
+            "sql_injection": "Implement input validation and parameterized queries",
+            "xss": "Implement proper input sanitization and output encoding",
+            "ssrf": "Implement proper input validation and network restrictions"
+        }
+        
+        return actions.get(vuln_type, "Address the identified security vulnerability")
+    
+    def _assess_cia_impact(self, finding: Dict[str, Any], aspect: str) -> str:
+        """Assess CIA (Confidentiality, Integrity, Availability) impact"""
+        severity = finding.get("severity", "Medium").lower()
+        vuln_type = finding.get("type", "security_misconfiguration")
+        
+        # Impact mapping based on vulnerability type and severity
+        impact_matrix = {
+            "information_disclosure": {"confidentiality": "High", "integrity": "None", "availability": "None"},
+            "sensitive_data_exposure": {"confidentiality": "High", "integrity": "Low", "availability": "None"},
+            "authentication_bypass": {"confidentiality": "High", "integrity": "High", "availability": "Low"},
+            "sql_injection": {"confidentiality": "High", "integrity": "High", "availability": "Medium"},
+            "xss": {"confidentiality": "Medium", "integrity": "Medium", "availability": "Low"},
+            "ssrf": {"confidentiality": "Medium", "integrity": "Low", "availability": "Low"},
+            "security_misconfiguration": {"confidentiality": "Medium", "integrity": "Low", "availability": "Low"}
+        }
+        
+        base_impact = impact_matrix.get(vuln_type, {"confidentiality": "Low", "integrity": "Low", "availability": "Low"})
+        
+        # Adjust based on severity
+        impact = base_impact.get(aspect, "Low")
+        if severity == "critical" and impact != "None":
+            impact = "High"
+        elif severity == "low":
+            impact = "Low" if impact != "None" else "None"
+            
+        return impact
     
     def _generate_vulnerability_details(self, finding: Dict[str, Any]) -> str:
         """Generate detailed vulnerability description"""

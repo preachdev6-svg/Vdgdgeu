@@ -199,6 +199,19 @@ class WebHunter:
         self.logger.info(f"🏆 Web hunt completed - Found {hunt_session['total_findings']} potential vulnerabilities")
         return hunt_session["findings"]
     
+    def _create_finding(self, target: str, finding_type: str, title: str, description: str, severity: str, evidence: Dict[str, Any], tool: str) -> Dict[str, Any]:
+        """Create a standardized finding with target information"""
+        return {
+            "type": finding_type,
+            "title": title,
+            "description": description,
+            "severity": severity,
+            "evidence": evidence,
+            "tool": tool,
+            "target": target,
+            "timestamp": datetime.now().isoformat()
+        }
+    
     async def _phase_reconnaissance(self, target: str, intelligence: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Phase 1: Comprehensive reconnaissance"""
         self.logger.info("🔍 Phase 1: Reconnaissance")
@@ -208,14 +221,11 @@ class WebHunter:
         # Subdomain enumeration
         subdomains = await self._enumerate_subdomains(target)
         if subdomains:
-            findings.append({
-                "type": "information_disclosure",
-                "title": "Subdomains Discovered",
-                "description": f"Found {len(subdomains)} subdomains",
-                "severity": "Info",
-                "evidence": {"subdomains": subdomains},
-                "tool": "subdomain_enumeration"
-            })
+            findings.append(self._create_finding(
+                target, "information_disclosure", "Subdomains Discovered",
+                f"Found {len(subdomains)} subdomains", "Info",
+                {"subdomains": subdomains}, "subdomain_enumeration"
+            ))
         
         # Port scanning
         open_ports = await self._scan_ports(target)
@@ -696,6 +706,92 @@ class WebHunter:
                             })
                     except:
                         continue
+                
+                # Check for security headers
+                security_headers = {
+                    "X-Frame-Options": "Clickjacking protection",
+                    "X-Content-Type-Options": "MIME type sniffing protection",
+                    "X-XSS-Protection": "XSS protection",
+                    "Strict-Transport-Security": "HTTPS enforcement",
+                    "Content-Security-Policy": "Content injection protection"
+                }
+                
+                missing_headers = []
+                for header, description in security_headers.items():
+                    if header not in response.headers:
+                        missing_headers.append(f"{header} ({description})")
+                
+                if missing_headers:
+                    findings.append({
+                        "type": "security_misconfiguration",
+                        "title": "Missing Security Headers",
+                        "description": f"Missing important security headers: {', '.join(missing_headers)}",
+                        "severity": "Medium",
+                        "evidence": {"missing_headers": missing_headers},
+                        "tool": "custom_check"
+                    })
+                
+                # Check for common sensitive files
+                sensitive_files = [
+                    "/.env", "/.git/config", "/config.php", "/wp-config.php",
+                    "/database.yml", "/secrets.yml", "/.aws/credentials",
+                    "/backup.sql", "/dump.sql", "/phpinfo.php"
+                ]
+                
+                for file_path in sensitive_files:
+                    try:
+                        response = await client.get(f"{target_url}{file_path}")
+                        if response.status_code == 200 and len(response.text) > 10:
+                            findings.append({
+                                "type": "sensitive_data_exposure",
+                                "title": f"Sensitive File Exposed: {file_path}",
+                                "description": f"Sensitive file {file_path} is publicly accessible",
+                                "severity": "High",
+                                "evidence": {
+                                    "url": f"{target_url}{file_path}",
+                                    "content_preview": response.text[:200]
+                                },
+                                "tool": "custom_check"
+                            })
+                    except:
+                        continue
+                
+                # Check for CORS misconfiguration
+                try:
+                    cors_headers = {
+                        "Origin": "https://evil.com"
+                    }
+                    response = await client.get(target_url, headers=cors_headers)
+                    if "Access-Control-Allow-Origin" in response.headers:
+                        allowed_origin = response.headers["Access-Control-Allow-Origin"]
+                        if allowed_origin == "*" or "evil.com" in allowed_origin:
+                            findings.append({
+                                "type": "security_misconfiguration",
+                                "title": "CORS Misconfiguration",
+                                "description": f"Permissive CORS policy allows origin: {allowed_origin}",
+                                "severity": "Medium",
+                                "evidence": {"allowed_origin": allowed_origin},
+                                "tool": "custom_check"
+                            })
+                except:
+                    pass
+                
+                # Check for HTTP methods
+                try:
+                    methods_to_test = ["OPTIONS", "PUT", "DELETE", "PATCH", "TRACE"]
+                    for method in methods_to_test:
+                        response = await client.request(method, target_url)
+                        if response.status_code not in [405, 501]:
+                            findings.append({
+                                "type": "security_misconfiguration",
+                                "title": f"Dangerous HTTP Method Allowed: {method}",
+                                "description": f"HTTP method {method} is allowed and returned status {response.status_code}",
+                                "severity": "Medium",
+                                "evidence": {"method": method, "status_code": response.status_code},
+                                "tool": "custom_check"
+                            })
+                except:
+                    pass
         
         except Exception as e:
             self.logger.debug(f"Custom vulnerability checks failed: {e}")

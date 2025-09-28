@@ -266,6 +266,39 @@ class ReconStrategist:
             ]
         }
     
+    async def analyze(self, target: str, target_type: str, intelligence: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze target and generate comprehensive reconnaissance strategy"""
+        self.logger.info(f"🧠 Analyzing target for reconnaissance: {target}")
+        
+        # Generate reconnaissance plan
+        recon_plan = await self.plan_reconnaissance(target, target_type, intelligence)
+        
+        # Execute reconnaissance
+        recon_results = await self.execute_reconnaissance(recon_plan)
+        
+        # Generate analysis summary
+        analysis = {
+            "target": target,
+            "target_type": target_type,
+            "recon_plan": recon_plan,
+            "recon_results": recon_results,
+            "analysis_summary": {
+                "total_phases": len(recon_plan.get("phases", [])),
+                "completed_phases": len([p for p in recon_results.get("phase_results", []) if p.get("status") == "completed"]),
+                "total_findings": sum(len(p.get("findings", [])) for p in recon_results.get("phase_results", [])),
+                "high_value_findings": [f for p in recon_results.get("phase_results", []) for f in p.get("findings", []) if f.get("severity", "").lower() in ["high", "critical"]],
+                "recommendations": recon_results.get("recommendations", [])
+            },
+            "self_reflection": {
+                "effectiveness": recon_results.get("effectiveness_score", 0.0),
+                "improvements": recon_results.get("improvement_suggestions", []),
+                "learning_notes": recon_results.get("learning_notes", [])
+            }
+        }
+        
+        self.logger.info(f"✅ Reconnaissance analysis completed - {analysis['analysis_summary']['total_findings']} findings")
+        return analysis
+
     async def plan_reconnaissance(self, target: str, target_type: str, intelligence: Dict[str, Any]) -> Dict[str, Any]:
         """
         Plan comprehensive reconnaissance strategy for a target

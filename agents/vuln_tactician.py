@@ -762,6 +762,86 @@ class VulnTactician:
             return "Low"
         else:
             return "Medium"
+    
+    async def analyze_escalation_chains(self, findings: List[Dict[str, Any]], intelligence: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze multiple findings for escalation chain opportunities"""
+        self.logger.info(f"🔗 Analyzing {len(findings)} findings for escalation chains")
+        
+        escalation_chains = []
+        enhanced_findings = []
+        
+        for finding in findings:
+            # Analyze individual finding escalation
+            escalation_result = await self.analyze_escalation(finding, findings)
+            
+            if escalation_result.get("escalation_potential", "none") != "none":
+                enhanced_findings.append({
+                    **finding,
+                    "escalation_analysis": escalation_result
+                })
+                
+                # Look for chain opportunities
+                chains = await self._identify_escalation_chains(finding, findings, intelligence)
+                escalation_chains.extend(chains)
+        
+        return {
+            "enhanced_findings": enhanced_findings,
+            "escalation_chains": escalation_chains,
+            "chain_count": len(escalation_chains),
+            "high_value_chains": [c for c in escalation_chains if c.get("severity") in ["High", "Critical"]]
+        }
+    
+    async def _identify_escalation_chains(self, primary_finding: Dict[str, Any], all_findings: List[Dict[str, Any]], intelligence: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Identify specific escalation chains from a primary finding"""
+        chains = []
+        
+        primary_type = primary_finding.get("type", "unknown")
+        
+        # Common escalation patterns
+        escalation_patterns = {
+            "information_disclosure": ["sensitive_data_exposure", "authentication_bypass"],
+            "sensitive_data_exposure": ["authentication_bypass", "privilege_escalation"],
+            "security_misconfiguration": ["information_disclosure", "authentication_bypass"],
+            "ssrf": ["cloud_metadata_access", "internal_network_access"],
+            "xss": ["session_hijacking", "csrf", "account_takeover"],
+            "sql_injection": ["data_exfiltration", "privilege_escalation", "rce"]
+        }
+        
+        potential_chains = escalation_patterns.get(primary_type, [])
+        
+        for chain_type in potential_chains:
+            # Look for supporting findings
+            supporting_findings = [f for f in all_findings if f.get("type") == chain_type]
+            
+            if supporting_findings:
+                chains.append({
+                    "primary_finding": primary_finding["title"],
+                    "chain_type": chain_type,
+                    "supporting_findings": [f["title"] for f in supporting_findings],
+                    "severity": self._calculate_chain_severity(primary_finding, supporting_findings),
+                    "description": f"{primary_finding['title']} can be chained with {chain_type} to escalate impact"
+                })
+        
+        return chains
+    
+    def _calculate_chain_severity(self, primary: Dict[str, Any], supporting: List[Dict[str, Any]]) -> str:
+        """Calculate severity of an escalation chain"""
+        primary_sev = primary.get("severity", "Low")
+        
+        # If any supporting finding is High/Critical, chain becomes High/Critical
+        for finding in supporting:
+            if finding.get("severity") in ["Critical", "High"]:
+                return "Critical"
+        
+        # Escalate primary severity by one level
+        severity_escalation = {
+            "Low": "Medium",
+            "Medium": "High", 
+            "High": "Critical",
+            "Critical": "Critical"
+        }
+        
+        return severity_escalation.get(primary_sev, "Medium")
 
 class CVSSCalculator:
     """CVSS 3.1 Score Calculator"""
